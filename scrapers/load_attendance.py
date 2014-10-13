@@ -62,10 +62,15 @@ def scrape_index():
                 if row[4] != "" and row[4] != "0000-00-00 00:00:00":
                     in_time = datetime.strptime(row[4],"%Y-%m-%d %H:%M:%S")
                     in_time_hrs = (row[4])[11:16]
+                    in_time_hrs = in_time_hrs.split(":")
+                    in_time_hrs = float(in_time_hrs[0])+ float(in_time_hrs[1])/float(60)
+
 
                 if row[5] != "" and row[5] != "0000-00-00 00:00:00":
                     out_time = datetime.strptime(row[5],"%Y-%m-%d %H:%M:%S")
                     out_time_hrs = (row[5])[11:16]
+                    out_time_hrs = out_time_hrs.split(":")
+                    out_time_hrs = float(out_time_hrs[0])+ float(out_time_hrs[1])/float(60)
 
                 if  out_time is not None and in_time is not None:
                     working_hours = str(out_time-in_time)
